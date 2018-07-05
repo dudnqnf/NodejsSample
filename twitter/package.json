@@ -1,0 +1,20 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.5.1",
+    "ejs": "^1.0.0",
+    "passport": "^0.2.0",
+    "passport-twitter": "^1.0.2"    
+  },
+  "oauth": {
+    "twitter": {
+      "TWITTER_CONSUMER_KEY": "FujLaPuGmMjBC2OqiU5JrAv0H",
+      "TWITTER_CONSUMER_SECRET": "BFjt50rtAAMaK850EK69p6jejwWiMAtPaA4lgE3G4DlHyx818g",
+      "callbackURL": "http://your_host/auth/twitter/callback"
+    }
+}

@@ -1,0 +1,18 @@
+<% include top %>
+
+<h1 id="page-title"><%=title%></h1>
+<div id="list">
+	<form action="/create" method="post">
+		<div class="item-new">
+			<input class="input" type="text" name="content">		
+		</div>
+	</form>
+	<% todos.forEach(function(todo) {%>
+	<div class="item">
+		<a class="update-link" href="/edit/<%=todo._id%>"><%=todo.content%></a>
+		<a class="del-btn" href="/destroy/<%=todo._id%>">Delete</a>
+	</div>
+	<% });%>
+</div>
+
+<% include bottom %>

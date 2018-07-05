@@ -1,0 +1,16 @@
+{
+	"name":"blog",
+	"private":true,
+	"version": "0.0.1",
+	"description":"myblog",
+	"main":"app.js",
+	"author":"",
+	"dependencies":{
+		"mongoose":"~3.6.15",
+		"express":"~3.3.4",
+		"jade":"~0.34.1",
+		"email-validator":"~0.1.2",
+		"express-mongoose":"~0.1.0",
+		"mongoose-lifecycle":"~1.0.0"
+	}
+}

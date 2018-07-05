@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>asd</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+	<h1>asd</h1>
+		<form action="/fix_mem_post" method="post">
+		<table border=1>
+		<tr>
+			<td colspan=2>정보변경</td>
+		</tr>
+		<tr>
+			<td>아이디</td>
+			<td><input type="hidden" name="user_id" value="<%=user_id%>"><%=user_id%></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="pwd"></td>
+		</tr>
+		<tr>
+			<td>이메일</td>
+			<td><input type="email" name="email" value="<%=email%>"></td>
+		</tr>
+		<tr>
+			<td>자기소개</td>
+			<td><textarea name="memo"><%=memo%></textarea></td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="변경하기"></td>
+		</tr>
+		</table>
+	</form>
+</body>
+</html>

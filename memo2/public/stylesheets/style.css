@@ -1,0 +1,91 @@
+body {
+  padding: 50px;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#page {
+	margin-left: auto;
+	margin-right: auto;
+	width: 870px;
+}
+
+#header {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#new_memo {
+	border: 1px solid #ccc;
+	height: 140px;
+	margin-bottom: 10px;
+	padding: 10px;
+	min-height:100%;
+	text-align: right;
+}
+
+.left {
+	float: left;
+	text-align: center;
+}
+
+.right {
+	float: right;
+}
+
+#new_memo textarea {
+	width: 630px;
+	height: 110px;
+	float: right;
+	margin-bottom: 5px;
+}
+
+#memo_list {
+	border: 1px solid #ddddaa;
+	background-color: #ffffdd;
+}
+
+#memo_list .item {
+	margin:10px;
+	clear: both;
+}
+
+#memo_list .writer {
+	width: 830px;
+	padding: 5px;
+	border: 1px solid #ddddcc;
+	background-color: #eeeeaa;
+	margin-bottom: 5px;
+}
+
+#memo_list .content {
+	width: 830px;
+	padding: 5px;
+	word-wrap: break-word;
+	clear: both;
+	
+	border: 1px solid #ddddcc;
+	background-color: #fdfdf0;
+}
+
+#memo_list .textarea_upd {
+	width: 810px;
+	height: 100px;
+	
+	border: 1px solid #ddddcc;
+}
+
+.text_button {
+	font-size: 11px;
+	font-weight: bold;
+	color: #999;
+	cursor: pointer;
+}
+
+.text_button:hover {
+	text-decoration: underline;
+}

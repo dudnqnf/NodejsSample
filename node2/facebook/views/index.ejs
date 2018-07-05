@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <div id="fb-root"></div>
+<script>
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '546607095460423',
+    status     : true,
+    cookie     : true,
+    xfbml      : true
+  });
+
+  FB.Event.subscribe('auth.authResponseChange', function(response) {
+    alert("0");
+    if (response.status === 'connected') {
+      alert("1");
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      alert("2");
+      FB.login();
+    } else {
+      alert("3");
+      FB.login();
+    }
+  });
+};
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/ko_KR/all.js#xfbml=1&appId=546607095460423";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is successful.
+  // This testAPI() function is only called in those cases.
+
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Good to see you, ' + response.name + '.');
+    });
+  }
+</script>
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+	<h1><%= title %></h1>
+	<form action="/ranking" method="post">
+		<input type="text" name="udid" value="udid1"> udid<br>
+		<input type="text" name="user_id" value="hong1"> user_id<br>
+		<input type="text" name="facebook_id" value="facehong1"> facebook_id<br>
+		<input type="text" name="user_level" value="4"> user_level<br>
+		<input type="text" name="user_skill" value="5"> user_skill<br>
+		<input type="text" name="user_magic" value="3"> user_magic<br>
+		<input type="text" name="score" value="100"> score<br>
+		<input type="submit"  value="전송"><br>
+	</form>
+</body>
+</html>

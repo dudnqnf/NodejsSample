@@ -1,0 +1,24 @@
+<% include top %>
+
+<h1 id="page-title"><%=title%></h1>
+<div id="list">
+	<form action="/create" method="post">
+		<div class="item-new">
+			<input class="input" type="text" name="content">		
+		</div>
+	</form>
+	<% todos.forEach(function(todo) {%>
+	<div class="item<%=((todo._id == current) ? '-new' : '')%>">
+		<% if(todo._id == current) { %>
+			<form class="update-form" action="/update/<%=todo._id%>" method="post">
+				<input class="update-input" name="content" value="<%=todo.content%>">
+			</form>
+			<% } else {%>
+			<a class="update-link" href="/edit/<%=todo._id%>"><%=todo.content%></a>
+		<% } %>
+		<a class="del-btn<%=((todo._id == current) ? '-edit' : '')%>" href="/destroy/<%=todo._id%>">Delete</a>
+		</div>	
+	<% });%>
+</div>
+
+<% include bottom %>

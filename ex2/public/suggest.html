@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>ajax 검색어 자동 완성</title>
+<script src="./xhr.js"></script>
+<script type="text/javascript">
+	function sendKeyword(){
+		// alert("호출됨");
+		var keyword = document.getElementById("keyword").value;
+		if(keyword == ""){
+			document.getElementById("suggest").style.display="none";
+			return;
+		}
+		// alert(keyword);
+		var params = {
+			"keyword" : keyword,
+		}
+		sendProcess("http://localhost:3000/users", params, viewdata, 'GET');
+	}	//sendkeyword
+
+	function viewdata(){
+		if(xhr.readyState==4 && xhr.status==200){	//complete
+			var str = xhr.responseText;
+			var arr = str.split(',');
+			var output = "";
+			for (var i = 0 ; i < arr.length; i++){
+				output += "<a href=\"javascript:select('"+arr[i]+"')\">"+arr[i]+"</a><br>";
+			}
+			document.getElementById("suggest").innerHTML=output;
+			document.getElementById("suggest").style.display="";
+		}
+		function select(word){
+			document.search.keyword.value = word;
+			document.getElementById("suggest").style.display="none";
+		}
+	}
+</script>
+</head>
+<body>
+	<form name="search">
+		<input type="text" name="keyword" id="keyword" onkeyup="sendKeyword()">
+		<input type="button" value="검색">
+		<div id="suggest" style="display:;position:absolute;left:10px;top:30px;"></div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript">
+    	function modify(){
+    		location.href = "/update/<%=data.num%>/page/<%=page%>";
+    	}
+    	function delview(){
+    		document.getElementById("frm1").style.display='inline';
+    		document.getElementById("span1").style.visibility='hidden';
+    	}
+    	function del(){
+    		if(document.getElementById("pwd").value == ""){
+    			alert("비밀번호를 입력하세요!");
+    			document.getElementById("pwd").focus();
+    			return;
+    		}
+    		document.frm1.submit();
+    	}
+    	function cancel(){
+		document.getElementById("frm1").style.display='inline';
+    		document.getElementById("span1").style.visibility='hidden';
+    	}
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+<a href="/list/<%page%>">리스트</a>
+<table>
+	<tr>
+		<th width="120">글번호</th>
+		<td><%=data.num%></td>
+	</tr>
+	<tr>
+		<th width="120">글쓴이</th>
+		<td><%=data.writer%></td>
+	</tr>
+	<tr>
+		<th width="120">조회수</th>
+		<td><%=data.hit%></td>
+	</tr>
+	<tr>
+		<th width="120">제목</th>
+		<td><%=data.title%></td>
+	</tr>
+	<tr>
+		<th width="120">내용</th>
+		<td><%=data.content%></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<span id="span1">
+				<input type="submit" value="글수정" onclick="modify()">
+				<input type="reset" value="글삭제" onclick="delview()">
+			</span>
+			<form id='frm1' name='frm1' action='/delete' method='post' style='display:inline;display:none'>
+				<input type="hidden" name="page" value="<%=page%>">
+				<input type="hidden" name="num" value="<%=data.num%>">
+				비밀번호 : <input type="password" id="pwd" name="pwd" size="12" maxlength="12">
+				<input type="button" value="del" onclick="del()">
+				<input type="button" value="cancel" onclick="cancel()">
+			</form>
+		</td>
+	</tr>
+</table>
+  </body>
+</html>

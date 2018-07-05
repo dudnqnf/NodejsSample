@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  	<meta charset="utf-8">
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<a href="/write">글쓰기 </a>
+		<table width=600 border=1>
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+				<th>조회</th>
+			</tr>
+			<% data.forEach(function(item, index){%>
+			<tr>
+				<td><%=max - index%></td>
+				<td><a href="/read/<%=item.num%>/page/<%=page%>"><%=item.title%></a></td>
+				<td><%=item.writer%></td>
+				<td><%=item.regdate.format("yyyy년 MM월 dd일 a/p hh시 mm분 ss초")%></td>
+				<td><%=item.hit%></td>
+			</tr>
+			<%})%>
+		</table>
+		<div style="width:40em;text-align:center;padding-top:2px;">
+			<% if(page > pageSize) {%>
+				[ <a href="/list/1" style="text-decoration:none;">◁◁</a>]
+				[ <a href="/list/<%startPage-1%>" style="text-decoration:none;">◁</a>]
+			<%}else {%>
+				[<span style="color:gray">◁◁</span>]
+				[<span style="color:gray">◁</span>]
+			<%}%>
+
+			<% for(var i = startPage; i<=endPage; i++) {%>
+				<% if(i !=page) { %>
+				[<a href="/list/<%=i%>"><%=i%></a>]
+				<%}else{%>
+				[<span style="color:gray"><%=i%></span>]
+				<%}%>
+			<%}%>
+
+			<% if(endPage < totalPage) {%>
+				[ <a href="/list/<%endPage+1%>" style="text-decoration:none;">▷▷</a>]
+				[ <a href="/list/<%totalPage%>" style="text-decoration:none;">▷</a>]
+			<%}else{%>
+				[<span style="color:gray">▷▷</span>]
+				[<span style="color:gray">▷</span>]
+			<%}%>
+		</div>
+	</body>
+</html>

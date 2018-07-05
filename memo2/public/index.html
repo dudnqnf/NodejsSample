@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My Memo</title>
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<script src="/javascripts/jquery-1.10.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var sel = function(){
+				$.get('/sel', function(data){
+					console.log('data',data);
+					$("#memo_list").empty();
+					$(data).each(function(i){
+						var id = this._id;
+						$("#memo_list").prepend("<div class='item'></div>");
+						$("#memo_list .item:first").append("<div class='writer'><b>"+this.writer+"</b> ("+ this.mtime + ")&nbsp;&nbsp; | <span class='text_button upd'>수정</span> | <span class='text_button del'>삭제</span></div>");
+						$("#memo_list .item:first").append("<div class='content "+id+"'>"+ this.content + "</div>");
+						//수정을 클릭하면 텍스트에어리어에 내용을 출력한다.
+						$("#memo_list .item:first .upd").click(function(evt){
+							var content = $("#memo_list ." + id).html();
+							$("#memo_list ." + id).html("<textarea id='textarea_"+id+"'' class='textarea_upd'>" + content + "</textarea>");
+							//내용 수정 후 엔터를 하면
+							$("#textarea_"+id).keypress(function(evt){
+								if(evt.which == 13){
+									if(this.value != "") {
+										upd(this.value, id);
+										evt.preventDefault();
+									}
+								}
+							})	//내용 수정 후 엔터	
+							//수정을 클릭
+						});	
+						$("#memo_list .item:first .del").click(function(evt){
+								del(id);
+								evt.preventDefault();
+						})//삭제를 클릭
+					});	//each
+				});	//get
+			}	//sel
+
+			var upd = function(content, id){
+				var data = {
+					"content":content, "_id":id
+				}
+				$.post("/upd", data, function(){sel();});
+			}
+
+			var del = function(id){
+				var data = {
+					"_id":id
+				}
+				$.post("/del", data, function(){sel();});
+			}
+
+			var ins = function(content){
+				var data = {
+					"writer":$("#writer").val(), 
+					"content":content
+				}
+				$.post("/ins", data, function(){sel();});
+			}
+
+			$("#new_memo textarea").keypress(function(evt){
+				if(evt.keyCode == 13 || evt.which == 13){
+					if(this.value != "") {
+						ins(this.value);
+						evt.preventDefault();
+						$(this).val("");
+					}
+				}
+			})
+				
+			
+
+
+			$("#ins_button").click(function(evt){
+				ins($("#content").val());
+				$("#content").val("");
+				evt.preventDefault();
+			})
+
+
+			sel();	//메모리스트 얻기
+		})
+	</script>
+</head>
+<body>
+	<div id="page"></div>
+	<div id="header">
+		My Memo
+	</div>
+	<div id="new_memo">
+		<div class="left">
+			<label for="writer">작성자</label>
+			<input  type="text" id="writer" class="writer" value="홍길동">
+		</div>
+		<div class="right">
+			<textarea id="content"></textarea>
+			<br>
+			<input id="ins_button" type="button" value="추가">
+		</div>
+	</div>
+	<div id="memo_list">
+	</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		#chat {
+			height:500px;
+			overflow-y: auto;
+			max-height:480px;
+		}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+
+</head>
+<body>
+	<div id="chat"></div>
+	<form id="send-message">
+		<input type="text" size="35" id="message">
+		<input type="submit" value="Send">
+	</form>
+	<script type="text/javascript">
+		jQuery(function($){
+			var  socket = io.connect();
+			var $MessageForm = $("#send-message");
+			var $messageBox = $("#message");
+			var $chat = $("#chat");
+			$MessageForm.submit(function(e){
+				e.preventDefault();
+				socket.emit("send message", $messageBox.val());
+				$messageBox.val("");
+			});
+
+			socket.on("new message", function(data){
+				$chat.append(data + "<br>");
+				$chat.scrollTop($chat.prop("scrollHeight"));
+			});
+		});
+	</script>
+</body>
+</html>

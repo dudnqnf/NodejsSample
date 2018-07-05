@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+	<style type="text/css" media="screen">
+		th {background-color:lightgrey;}	
+	</style>
+</head>
+
+<body>
+	<h1><%= title %></h1>
+	<table width="100%">
+		<tr>
+			<th>ranking</th>
+			<th>score</th>
+			<th>facebook_id</th>
+			<th>user_id</th>
+			<th>udid</th>
+			<th>level</th>
+			<th>magic</th>
+			<th>skill</th>
+		</tr>
+		<% data.forEach(function(item) {%>
+		<tr>
+			<td align="center"><%=item.rank%></td>
+			<td style="text-align:right; padding-right:5px;"><%=item.score%></td>
+			<td><%=item.facebook_id%></td>
+			<td><%=item.user_id%></td>
+			<td><%=item.udid%></td>
+			<td align="center"><%=item.user_level%></td>
+			<td align="center"><%=item.user_magic%></td>
+			<td align="center"><%=item.user_skill%></td>
+		</tr>
+		<% }); %>
+	</table>
+</body>
+</html>
